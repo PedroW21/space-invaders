@@ -15,6 +15,10 @@ function start() { // Sintaxe do jQuery
 
     var game = {};
 
+    // Player pode atirar no começo do jogo
+    var canShot = true;
+
+    // Definição das teclas de movimentação
     var KEYS = { //valores decimais das teclas, fonte: IBM
         W: 87,
         A: 65,
@@ -23,9 +27,11 @@ function start() { // Sintaxe do jQuery
         SPACE: 32
     };
 
+    // Velocidade dos inimos usados nas funções enemyType1 e 2
     var speedEnemyType1 = 3;
     var speedEnemyType2 = 5;
 
+    // Função que gera a cada solicitação o valor randomico para o posicionamento no eixo Y dos inimigos
     function positionEnemyAxisY() {
        return parseInt(Math.random * 606);
     } 
@@ -59,6 +65,16 @@ function start() { // Sintaxe do jQuery
         moveEnemyType2(".enemy6");
         moveEnemyType2(".enemy7");
         moveEnemyType2(".enemy8");
+
+        collisionDivsEnemy(".enemy");
+        collisionDivsEnemy(".enemy2");
+        collisionDivsEnemy(".enemy3");
+        collisionDivsEnemy(".enemy4");
+        collisionDivsEnemy(".enemy5");
+        collisionDivsEnemy(".enemy6");
+        collisionDivsEnemy(".enemy7");
+        collisionDivsEnemy(".enemy8");
+
     }
 
     // Fim do loop
@@ -105,7 +121,7 @@ function start() { // Sintaxe do jQuery
         }
 
         if(game.pressKey[KEYS.SPACE]) {
-
+            doShot();
         }
     }
 
@@ -127,6 +143,8 @@ function start() { // Sintaxe do jQuery
         }
     }   
 
+    // Função move inimigo tipo 2 (Minion)
+
     function moveEnemyType2(numberOfTheEnemy) {
         
         positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
@@ -143,5 +161,93 @@ function start() { // Sintaxe do jQuery
             $(numberOfTheEnemy).css("top",positionEnemyAxisY());
         }
     }   
-  
+    
+    // Função para atirar
+
+   function doShot() {
+       
+    if (canShot==true) {
+            
+            canShot=false;
+            
+            toTop = parseInt($(".player").css("top"));
+            
+            positionPlayerAxisX= parseInt($(".player").css("left"));
+
+            shotAxisX = positionPlayerAxisX + 190;
+
+            topShot = toTop + 5;
+
+            $(".bg-game").append("<div class='bullet'></div");
+            $(".bullet").css("top",topShot);
+            $(".bullet").css("left",shotAxisX);
+            
+            var timeShot=window.setInterval(inFactShot, 30);
+    } // Fecha a canShot
+
+    function inFactShot(){
+        positionPlayerAxisX = parseInt($(".bullet").css("left"));
+        $(".bullet").css("left",positionPlayerAxisX + 45); //altere o numero aqui para definir a velocidade do tiro
+
+        if(positionPlayerAxisX > 900){ // somente apos o tiro percorrer todo o caminho e for deletado que o jogador podera atirar novamente
+            window.clearInterval(timeShot);
+            timeShot = null; // Para compatibilidade, alguns browsers exigem null
+    
+            $(".bullet").remove();
+            canShot = true;
+
+        }
+    } // Fecha a tiro de fato
+
+    
+    } // Fecha a doShot
+
+
+    // Função para detectar colisão de DIVs
+
+    function collisionDivsEnemy(numberOfTheEnemy) {
+        var collision = ($(".player").collision($(numberOfTheEnemy)));
+        // jogador com inimigos do tipo 1
+
+        if(collision.length > 0) {
+            // Capturando a localização exata do inimigo
+            enemyAxisY = parseInt($(numberOfTheEnemy).css("left"));
+            enemyAxisX = parseInt($(numberOfTheEnemy).css("top")); 
+            
+            // Chama função para o Kabuuuuum!
+            explosion(enemyAxisX, enemyAxisY);
+
+            // Realoca o inimigo após a colisao
+            newPositionEnemyAxisY = () => parseInt(Math.random() * 334);
+
+            $(numberOfTheEnemy).css("left", 694);
+            $(numberOfTheEnemy).css("top", newPositionEnemyAxisY());
+        }
+    } // Fim da função para detectar colisão
+
+    // Função para execução da explosão
+    /*
+    function explosion(enemyAxisX,enemyAxisY) {
+
+        $(".bg-game").append("<div class='explosion'></div");
+        $(".explosion").css("background-image", "url(../assets/img/Explosion2.png)");
+
+        var div=$("explosion");
+        div.css("top", enemyAxisX);
+        div.css("left", enemyAxisY);
+
+        div.animate({width:200, opacity:0}, "slow");
+        
+        var timeExplosion= window.setInterval(removeExplosion, 1000);
+        
+            function removeExplosion() {
+                
+                div.remove();
+                window.clearInterval(timeExplosion);
+                timeExplosion=null;
+                
+            }
+            
+        } */ // Irei implementar aṕos fazer alguns testes
+         // Fim da função explosao1()
 }

@@ -58,8 +58,8 @@ body {
 /* Começo da formatação do jogador e seus inimigos */
 
 .player {
-    width:256px;
-	height:66px;
+    width:80px;
+	height:80px;
 	position:absolute;
 	left:8px;
 	top:179px;
@@ -144,3 +144,15 @@ body {
 	background-image: url(../img/spritesheets/minion-45x66.png);
 }
 
+.bullet {
+	width: 79px;
+	height: 79px;
+	position: absolute;
+	background-image: url(../img/beam.png);
+}
+
+.explosion {
+	width:15px;
+	height:87px;
+	position:absolute;
+}
