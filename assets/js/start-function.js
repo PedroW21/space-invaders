@@ -58,16 +58,28 @@ function start() { // Sintaxe do jQuery
         if(game.pressKey[KEYS.W]) {
             var toTop = parseInt($(".player").css("top"));
             $(".player").css("top", toTop-10);
+
+            if(toTop <=0) {
+                $(".player").css("top", toTop+10);
+            }
         }
 
         if(game.pressKey[KEYS.A]) {
             var toLeft = parseInt($(".player").css("left"));
             $(".player").css("left", toLeft-10);
+
+            if(toLeft <=0) {
+                $(".player").css("left", toLeft+10);
+            }
         }
 
         if(game.pressKey[KEYS.S]) {
             var toTop = parseInt($(".player").css("top"));
             $(".player").css("top", toTop+10);
+
+            if(toTop >=570) {
+                $(".player").css("top", toTop-10);
+            }
         }
 
         if(game.pressKey[KEYS.D]) {
