@@ -1,11 +1,21 @@
 @font-face {
-    font-family: Title-font;
+    font-family: Game-font;
     src: url(../fonts/Retro\ Gaming.ttf);
 }
 
 .title {
-    font-family: Title-font;
+    font-family: Game-font;
     font-size: 40px;
+    color: #FFFE00;
+}
+
+.information {
+    font-family: Game-font;
+    color: #FFAE00;
+}
+
+.play {
+    font-weight: bold;
 }
 
 body {
@@ -22,5 +32,35 @@ body {
 
 .bg-game{
     width: 950px;
+    height: 650px;
+    background-image: url(../img/background-game.jpg);
+    border-color: #FFFFFF;
+    border-style: solid;
+}
+
+.start {
+    width: 550px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Fim da formatação do Cenário */
+
+/* Começo da formatação do jogador e seus inimigos */
+
+.player {
     
 }
+
+.enemy {
+
+}
+
+.enemy2 {
+
+}
+
