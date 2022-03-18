@@ -1,0 +1,26 @@
+@font-face {
+    font-family: Title-font;
+    src: url(../fonts/Retro\ Gaming.ttf);
+}
+
+.title {
+    font-family: Title-font;
+    font-size: 40px;
+}
+
+body {
+    background-image: url(../img/space-invaders-bg.png);
+}
+
+.container{
+    width: 950px;
+    height: auto;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bg-game{
+    width: 950px;
+    
+}
