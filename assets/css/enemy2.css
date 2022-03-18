@@ -1,0 +1,37 @@
+.animation-enemy2 { /* Animação do Minion*/
+    background-image: url(../img/spritesheets/minion-45x66.png);
+    animation: play2 .1s steps(3) infinite;
+
+    /* Compatibilidade */
+    -webkit-animation: play .5s steps(2) infinite; /*Chrome*/
+    -moz-animation: play .5s steps(2) infinite; /*Firefox*/
+    -ms-animation: play .5s steps(2) infinite; /*Internet Explorer*/
+    -o-animation: play .5s steps(2) infinite; /*Opera*/
+}
+
+@keyframes play2 {
+    from {background-position: 0px;}
+    to {background-position: -90px;}
+}
+
+/* Compatibilidade */
+
+@-webkit-keyframes play2 {
+    from {background-position: 0px;}
+    to {background-position: -90px;}
+}
+
+@-moz-keyframes play2 {
+    from {background-position: 0px;}
+    to {background-position: -90px;}
+}
+
+@-ms-keyframes play2 {
+    from {background-position: 0px;}
+    to {background-position: -90px;}
+}
+
+@-o-keyframes play2 {
+    from {background-position: 0px;}
+    to {background-position: -90px;}
+}

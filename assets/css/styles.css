@@ -18,8 +18,12 @@
     font-weight: bold;
 }
 
+.play:hover {
+    cursor: pointer;
+}
+
 body {
-    background-image: url(../img/space-invaders-bg.png);
+    background-image: url(../img/background-game.jpg);
 }
 
 .container{
@@ -33,7 +37,7 @@ body {
 .bg-game{
     width: 950px;
     height: 650px;
-    background-image: url(../img/background-game.jpg);
+    background-image: url(../img/background-game-2.jpg);
     border-color: #FFFFFF;
     border-style: solid;
 }
@@ -46,6 +50,7 @@ body {
     margin-top: 100px;
     text-align: center;
     padding: 10px;
+	background-color: #36454F;
 }
 
 /* Fim da formatação do Cenário */
@@ -53,14 +58,89 @@ body {
 /* Começo da formatação do jogador e seus inimigos */
 
 .player {
-    
+    width:256px;
+	height:66px;
+	position:absolute;
+	left:8px;
+	top:179px;
+    background-image: url(../img/DurrrSpaceShip.png);
+    background-repeat: no-repeat;
 }
 
-.enemy {
+/* Andromalius Enemy */
 
+.enemy {
+    width: 57px;
+	height: 88px;
+	position: absolute;
+	left: 840px;
+	top: 48px;
+	background-image: url(../img/spritesheets/andromalius-57x88.png);
 }
 
 .enemy2 {
+    width: 57px;
+	height: 88px;
+	position: absolute;
+	left: 701px;
+	top: 152px;
+	background-image: url(../img/spritesheets/andromalius-57x88.png);
+}
 
+.enemy3 {
+    width: 57px;
+	height: 88px;
+	position: absolute;
+	left: 801px;
+	top: 305px;
+	background-image: url(../img/spritesheets/andromalius-57x88.png);
+}
+
+.enemy4 {
+    width: 57px;
+	height: 88px;
+	position: absolute;
+	left: 693px;
+	top: 420px;
+	background-image: url(../img/spritesheets/andromalius-57x88.png);
+}
+
+
+.enemy5 {
+    width: 57px;
+	height: 88px;
+	position: absolute;
+	left: 832px;
+	top: 531px;
+	background-image: url(../img/spritesheets/andromalius-57x88.png);
+}
+/* Fim do Andromalius */
+
+/* Começo do Minion */
+.enemy6 {
+    width: 42px;
+	height: 66px;
+	position: absolute;
+	left: 726px;
+	top: 546px;
+	background-image: url(../img/spritesheets/minion-45x66.png);
+}
+
+.enemy7 {
+    width: 42px;
+	height: 66px;
+	position: absolute;
+	left: 663px;
+	top: 303px;
+	background-image: url(../img/spritesheets/minion-45x66.png);
+}
+
+.enemy8 {
+    width: 42px;
+	height: 66px;
+	position: absolute;
+	left: 750px;
+	top: 48px;
+	background-image: url(../img/spritesheets/minion-45x66.png);
 }
 

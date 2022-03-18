@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/animations.css">
+    <link rel="stylesheet" href="./assets/css/enemy2.css">
     <title>Space Invaders!</title>
 </head>
 
@@ -15,8 +17,9 @@
         <!-- Background do Jogo - Inicio -->
         <div class="bg-game">
 
-            <section class="start"> <h1 class="title">Space Invaders</h1> <!-- Tela de inicio do jogo--> 
-                
+            <section class="start" onclick="start()">
+                <h1 class="title">Space Invaders</h1> <!-- Tela de inicio do jogo-->
+
                 <p class="information">Utilize as teclas W,A,S,D para movimentar a nave</p>
                 <p class="information play">Clique aqui para começar!!!</p>
 
@@ -28,6 +31,7 @@
 
     <script src="./assets/js/jquery-1.11.1.min.js"></script>
     <script src="./assets/js/jquery-collision.min.js"></script>
+    <script src="./assets/js/start-function.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,37 @@
+.animation-enemy { /*Animação do Andromalius*/
+    background-image: url(../img/spritesheets/andromalius-57x88.png);
+    animation: play .5s steps(8) infinite;
+
+    /* Compatibilidade */
+    -webkit-animation: play .5s steps(8) infinite; /*Chrome*/
+    -moz-animation: play .5s steps(8) infinite; /*Firefox*/
+    -ms-animation: play .5s steps(8) infinite; /*Internet Explorer*/
+    -o-animation: play .5s steps(8) infinite; /*Opera*/
+}
+
+@keyframes play {
+    from {background-position: 0px;}
+    to {background-position: -456px;}
+}
+
+/* Compatibilidade */
+
+@-webkit-keyframes play {
+    from {background-position: 0px;}
+    to {background-position: -456px;}
+}
+
+@-moz-keyframes play {
+    from {background-position: 0px;}
+    to {background-position: -456px;}
+}
+
+@-ms-keyframes play {
+    from {background-position: 0px;}
+    to {background-position: -456px;}
+}
+
+@-o-keyframes play {
+    from {background-position: 0px;}
+    to {background-position: -456px;}
+}
