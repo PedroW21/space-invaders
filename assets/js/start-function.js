@@ -24,11 +24,16 @@ function start() { // Sintaxe do jQuery
     };
 
     var speedEnemyType1 = 3;
+    var speedEnemyType2 = 5;
+
     var positionEnemyAxisY1 = parseInt(Math.random * 606);
     var positionEnemyAxisY2 = parseInt(Math.random * 606);
     var positionEnemyAxisY3 = parseInt(Math.random * 606);
     var positionEnemyAxisY4 = parseInt(Math.random * 606);
     var positionEnemyAxisY5 = parseInt(Math.random * 606);
+    var positionEnemyAxisY6 = parseInt(Math.random * 606);
+    var positionEnemyAxisY7 = parseInt(Math.random * 606);
+    var positionEnemyAxisY8 = parseInt(Math.random * 606);
 
 
     // Verifica se o usuario precionou alguma tecla
@@ -55,6 +60,9 @@ function start() { // Sintaxe do jQuery
         moveEnemy3(".enemy3");
         moveEnemy4(".enemy4");
         moveEnemy5(".enemy5");
+        moveEnemy6(".enemy6");
+        moveEnemy7(".enemy7");
+        moveEnemy8(".enemy8");
     }
 
     // Fim do loop
@@ -169,6 +177,58 @@ function start() { // Sintaxe do jQuery
             positionEnemyAxisY5 = parseInt(Math.random() * 606);
             $(numberOfTheEnemy).css("left",694);
             $(numberOfTheEnemy).css("top",positionEnemyAxisY5);
+        }
+    }   
+
+    function moveEnemy5(numberOfTheEnemy) {
+        
+        positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
+        $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType1);
+        $(numberOfTheEnemy).css("top",positionEnemyAxisY5);
+            
+            if (positionEnemyAxisX<=0) {
+            positionEnemyAxisY6 = parseInt(Math.random() * 606);
+            $(numberOfTheEnemy).css("left",694);
+            $(numberOfTheEnemy).css("top",positionEnemyAxisY6);
+        }
+    }
+
+    function moveEnemy6(numberOfTheEnemy) {
+        
+        positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
+        $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType2);
+        $(numberOfTheEnemy).css("top",positionEnemyAxisY6);
+            
+            if (positionEnemyAxisX<=0) {
+            positionEnemyAxisY6 = parseInt(Math.random() * 606);
+            $(numberOfTheEnemy).css("left",694);
+            $(numberOfTheEnemy).css("top",positionEnemyAxisY6);
+        }
+    }   
+
+    function moveEnemy7(numberOfTheEnemy) {
+        
+        positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
+        $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType2);
+        $(numberOfTheEnemy).css("top",positionEnemyAxisY7);
+            
+            if (positionEnemyAxisX<=0) {
+            positionEnemyAxisY7 = parseInt(Math.random() * 606);
+            $(numberOfTheEnemy).css("left",694);
+            $(numberOfTheEnemy).css("top",positionEnemyAxisY7);
+        }
+    }   
+
+    function moveEnemy8(numberOfTheEnemy) {
+        
+        positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
+        $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType2);
+        $(numberOfTheEnemy).css("top",positionEnemyAxisY8);
+            
+            if (positionEnemyAxisX<=0) {
+            positionEnemyAxisY8 = parseInt(Math.random() * 606);
+            $(numberOfTheEnemy).css("left",694);
+            $(numberOfTheEnemy).css("top",positionEnemyAxisY8);
         }
     }   
 }
