@@ -26,14 +26,9 @@ function start() { // Sintaxe do jQuery
     var speedEnemyType1 = 3;
     var speedEnemyType2 = 5;
 
-    var positionEnemyAxisY1 = parseInt(Math.random * 606);
-    var positionEnemyAxisY2 = parseInt(Math.random * 606);
-    var positionEnemyAxisY3 = parseInt(Math.random * 606);
-    var positionEnemyAxisY4 = parseInt(Math.random * 606);
-    var positionEnemyAxisY5 = parseInt(Math.random * 606);
-    var positionEnemyAxisY6 = parseInt(Math.random * 606);
-    var positionEnemyAxisY7 = parseInt(Math.random * 606);
-    var positionEnemyAxisY8 = parseInt(Math.random * 606);
+    function positionEnemyAxisY() {
+       return parseInt(Math.random * 606);
+    } 
 
 
     // Verifica se o usuario precionou alguma tecla
@@ -55,14 +50,15 @@ function start() { // Sintaxe do jQuery
     function loop () {
         moveBackground();
         movePlayer();
-        moveEnemy1(".enemy");
-        moveEnemy2(".enemy2");
-        moveEnemy3(".enemy3");
-        moveEnemy4(".enemy4");
-        moveEnemy5(".enemy5");
-        moveEnemy6(".enemy6");
-        moveEnemy7(".enemy7");
-        moveEnemy8(".enemy8");
+
+        moveEnemyType1(".enemy");
+        moveEnemyType1(".enemy2");
+        moveEnemyType1(".enemy3");
+        moveEnemyType1(".enemy4");
+        moveEnemyType1(".enemy5");
+        moveEnemyType2(".enemy6");
+        moveEnemyType2(".enemy7");
+        moveEnemyType2(".enemy8");
     }
 
     // Fim do loop
@@ -115,120 +111,37 @@ function start() { // Sintaxe do jQuery
 
     // Função move inimigo tipo 1 (Andromalius)
 
-    function moveEnemy1(numberOfTheEnemy) {
+    function moveEnemyType1(numberOfTheEnemy) {
         
         positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
         $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType1);
-        $(numberOfTheEnemy).css("top",positionEnemyAxisY1);
+        $(numberOfTheEnemy).css("top",positionEnemyAxisY());
             
             if (positionEnemyAxisX<=0) {
-            positionEnemyAxisY1 = parseInt(Math.random() * 606);
+                
+            let positionEnemyAxisY = () => {
+                return parseInt(Math.random() * 606);
+            };
             $(numberOfTheEnemy).css("left",694);
-            $(numberOfTheEnemy).css("top",positionEnemyAxisY1);
+            $(numberOfTheEnemy).css("top",positionEnemyAxisY());
         }
     }   
 
-    function moveEnemy2(numberOfTheEnemy) {
-        
-        positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
-        $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType1);
-        $(numberOfTheEnemy).css("top",positionEnemyAxisY2);
-            
-            if (positionEnemyAxisX<=0) {
-            positionEnemyAxisY2 = parseInt(Math.random() * 606);
-            $(numberOfTheEnemy).css("left",694);
-            $(numberOfTheEnemy).css("top",positionEnemyAxisY2);
-        }
-    }   
-
-    function moveEnemy3(numberOfTheEnemy) {
-        
-        positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
-        $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType1);
-        $(numberOfTheEnemy).css("top",positionEnemyAxisY3);
-            
-            if (positionEnemyAxisX<=0) {
-            positionEnemyAxisY3 = parseInt(Math.random() * 606);
-            $(numberOfTheEnemy).css("left",694);
-            $(numberOfTheEnemy).css("top",positionEnemyAxisY3);
-        }
-    }   
-
-    function moveEnemy4(numberOfTheEnemy) {
-        
-        positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
-        $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType1);
-        $(numberOfTheEnemy).css("top",positionEnemyAxisY4);
-            
-            if (positionEnemyAxisX<=0) {
-            positionEnemyAxisY4 = parseInt(Math.random() * 606);
-            $(numberOfTheEnemy).css("left",694);
-            $(numberOfTheEnemy).css("top",positionEnemyAxisY4);
-        }
-    }   
-
-    function moveEnemy5(numberOfTheEnemy) {
-        
-        positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
-        $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType1);
-        $(numberOfTheEnemy).css("top",positionEnemyAxisY5);
-            
-            if (positionEnemyAxisX<=0) {
-            positionEnemyAxisY5 = parseInt(Math.random() * 606);
-            $(numberOfTheEnemy).css("left",694);
-            $(numberOfTheEnemy).css("top",positionEnemyAxisY5);
-        }
-    }   
-
-    function moveEnemy5(numberOfTheEnemy) {
-        
-        positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
-        $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType1);
-        $(numberOfTheEnemy).css("top",positionEnemyAxisY5);
-            
-            if (positionEnemyAxisX<=0) {
-            positionEnemyAxisY6 = parseInt(Math.random() * 606);
-            $(numberOfTheEnemy).css("left",694);
-            $(numberOfTheEnemy).css("top",positionEnemyAxisY6);
-        }
-    }
-
-    function moveEnemy6(numberOfTheEnemy) {
+    function moveEnemyType2(numberOfTheEnemy) {
         
         positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
         $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType2);
-        $(numberOfTheEnemy).css("top",positionEnemyAxisY6);
+        $(numberOfTheEnemy).css("top",positionEnemyAxisY());
             
             if (positionEnemyAxisX<=0) {
-            positionEnemyAxisY6 = parseInt(Math.random() * 606);
-            $(numberOfTheEnemy).css("left",694);
-            $(numberOfTheEnemy).css("top",positionEnemyAxisY6);
-        }
-    }   
+            
+            let positionEnemyAxisY = () => {
+                return parseInt(Math.random() * 606);
+            }
 
-    function moveEnemy7(numberOfTheEnemy) {
-        
-        positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
-        $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType2);
-        $(numberOfTheEnemy).css("top",positionEnemyAxisY7);
-            
-            if (positionEnemyAxisX<=0) {
-            positionEnemyAxisY7 = parseInt(Math.random() * 606);
             $(numberOfTheEnemy).css("left",694);
-            $(numberOfTheEnemy).css("top",positionEnemyAxisY7);
+            $(numberOfTheEnemy).css("top",positionEnemyAxisY());
         }
     }   
-
-    function moveEnemy8(numberOfTheEnemy) {
-        
-        positionEnemyAxisX = parseInt($(numberOfTheEnemy).css("left"));
-        $(numberOfTheEnemy).css("left",positionEnemyAxisX-speedEnemyType2);
-        $(numberOfTheEnemy).css("top",positionEnemyAxisY8);
-            
-            if (positionEnemyAxisX<=0) {
-            positionEnemyAxisY8 = parseInt(Math.random() * 606);
-            $(numberOfTheEnemy).css("left",694);
-            $(numberOfTheEnemy).css("top",positionEnemyAxisY8);
-        }
-    }   
+  
 }
