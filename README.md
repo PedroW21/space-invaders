@@ -4,4 +4,5 @@
  ## To-do
 
  - Implentar efeito ao ter colisão entre player e inimigo;
+ - Arrumar tiro em sequência;
  - Implementar uma animação no tiro;
