@@ -156,3 +156,48 @@ body {
 	height:87px;
 	position:absolute;
 }
+
+.placar {
+	width: 450px;
+	height: 50px;
+	position: absolute;
+	left: 5px;
+	top: 590px;
+}
+
+.placar-title {
+	font-family:Game-font;
+	font-size:20px;
+	color:#FFF;
+}
+
+.life {
+	width: 140px;
+	height: 30px;
+	position: absolute;
+	left: 750px;
+	top: 7px;
+}
+
+.restart {
+	font-family:Game-font;
+	font-size:20px;
+	color:#603A03;
+
+}
+
+.end {
+	width:350px;
+	height:200px;
+	background-color:#FFF;
+ 	margin-left:auto;
+    	margin-right:auto;
+ 	margin-top:100px;
+	text-align:center;
+	padding:10px;
+
+}
+
+.playAgain:hover{
+    cursor: pointer;
+}

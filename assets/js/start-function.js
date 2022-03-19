@@ -1,5 +1,8 @@
 function start() { // Sintaxe do jQuery
     $(".start").hide();
+    $(".bg-game").append("<div class='placar placar-title'></div>");
+    $(".bg-game").append("<div class='life'></div>");
+
 
     $(".bg-game").append("<div class='player'>"); //cria novas divs (append) e onde seria
     $(".bg-game").append("<div class='enemy animation-enemy'>");
@@ -11,9 +14,22 @@ function start() { // Sintaxe do jQuery
     $(".bg-game").append("<div class='enemy7 animation-enemy2'>");
     $(".bg-game").append("<div class='enemy8 animation-enemy2'>");
 
+    //Musicas do jogo
+
+    var shotSound = document.getElementById("shotSound");
+    var backgroundSound=document.getElementById("backgroundSound");
+    var gameOverSound=document.getElementById("gameOverSound");
+
+    //Música em loop
+    backgroundSound.addEventListener("ended", function(){ backgroundSound.currentTime = 0; music.play(); }, false);
+    backgroundSound.play();
     // Principais variáveis do jogo
 
     var game = {};
+
+    var endGame = false;
+    var points= 0;
+    var actualLife = 3;
 
     // Player pode atirar no começo do jogo
     var canShot = true;
@@ -56,7 +72,7 @@ function start() { // Sintaxe do jQuery
     function loop () {
         moveBackground();
         movePlayer();
-
+        
         moveEnemyType1(".enemy");
         moveEnemyType1(".enemy2");
         moveEnemyType1(".enemy3");
@@ -74,6 +90,9 @@ function start() { // Sintaxe do jQuery
         collisionDivsEnemy(".enemy6");
         collisionDivsEnemy(".enemy7");
         collisionDivsEnemy(".enemy8");
+
+        placar();
+        lifeCounter();
 
     }
 
@@ -169,6 +188,8 @@ function start() { // Sintaxe do jQuery
     if (canShot==true) {
             
             canShot=false;
+
+            shotSound.play();
             
             toTop = parseInt($(".player").css("top"));
             
@@ -186,8 +207,11 @@ function start() { // Sintaxe do jQuery
     } // Fecha a canShot
 
     function inFactShot(){
+
+        speedPlayerBullet = 35;
+
         positionPlayerAxisX = parseInt($(".bullet").css("left"));
-        $(".bullet").css("left",positionPlayerAxisX + 45); //altere o numero aqui para definir a velocidade do tiro
+        $(".bullet").css("left",positionPlayerAxisX + speedPlayerBullet); //altere o numero aqui para definir a velocidade do tiro
 
         if(positionPlayerAxisX > 900){ // somente apos o tiro percorrer todo o caminho e for deletado que o jogador podera atirar novamente
             window.clearInterval(timeShot);
@@ -206,16 +230,24 @@ function start() { // Sintaxe do jQuery
     // Função para detectar colisão de DIVs
 
     function collisionDivsEnemy(numberOfTheEnemy) {
-        var collision = ($(".player").collision($(numberOfTheEnemy)));
+        let collision = ($(".player").collision($(numberOfTheEnemy)));
+
+        var bulletCollision = ($(".bullet").collision($(numberOfTheEnemy)));
+
+        
+
         // jogador com inimigos do tipo 1
 
         if(collision.length > 0) {
+
+            actualLife--;
+
             // Capturando a localização exata do inimigo
             enemyAxisY = parseInt($(numberOfTheEnemy).css("left"));
             enemyAxisX = parseInt($(numberOfTheEnemy).css("top")); 
             
             // Chama função para o Kabuuuuum!
-            explosion(enemyAxisX, enemyAxisY);
+            //explosion(enemyAxisX, enemyAxisY);
 
             // Realoca o inimigo após a colisao
             newPositionEnemyAxisY = () => parseInt(Math.random() * 334);
@@ -223,7 +255,28 @@ function start() { // Sintaxe do jQuery
             $(numberOfTheEnemy).css("left", 694);
             $(numberOfTheEnemy).css("top", newPositionEnemyAxisY());
         }
-    } // Fim da função para detectar colisão
+
+        if(bulletCollision.length > 0) {
+            
+            points = points + 1;
+            speedEnemyType1 += 0.1;
+            speedEnemyType2 += 0.1;
+
+            speedPlayerBullet+= 1;
+            
+            $(".bullet").css("left", 1000)
+            enemyAxisY = parseInt($(numberOfTheEnemy).css("left"));
+            enemyAxisX = parseInt($(numberOfTheEnemy).css("top")); 
+
+            newPositionEnemyAxisY = () => parseInt(Math.random() * 334);
+
+            $(numberOfTheEnemy).css("left", 694);
+            $(numberOfTheEnemy).css("top", newPositionEnemyAxisY());
+        }
+    }
+     
+    
+    // Fim da função para detectar colisão
 
     // Função para execução da explosão
     /*
@@ -246,8 +299,64 @@ function start() { // Sintaxe do jQuery
                 window.clearInterval(timeExplosion);
                 timeExplosion=null;
                 
-            }
+            }jogo
             
         } */ // Irei implementar aṕos fazer alguns testes
          // Fim da função explosao1()
+
+         function placar() {
+	
+            $(".placar").html("<h2 class='placar-title'> Pontos: " + points + "</h2>");
+            
+        } //fim da função placar()
+
+        // Função para atualizar a vida do player
+
+        function lifeCounter(){
+            if(actualLife ==3){
+                $(".life").css("background-image", "url(../assets/img/energia3.png)");
+            }
+            else if(actualLife==2){
+                $(".life").css("background-image", "url(../assets/img/energia2.png)");
+            }
+            else if(actualLife==1){
+                $(".life").css("background-image", "url(../assets/img/energia1.png)");
+            }
+            else {
+                $(".life").css("background-image", "url(../assets/img/energia0.png)");
+                gameOver();
+            }
+        }
+
+        function gameOver() {
+            endGame=true;
+            backgroundSound.pause();
+            gameOverSound.play();
+            
+            window.clearInterval(game.timer);
+            game.timer=null;
+            
+            $(".player").remove();
+            $(".enemy").remove();
+            $(".enemy2").remove();
+            $(".enemy3").remove();
+            $(".enemy4").remove();
+            $(".enemy5").remove();
+            $(".enemy6").remove();
+            $(".enemy7").remove();
+            $(".enemy8").remove();
+            
+            $(".bg-game").append("<div class='end'></div>");
+            
+            $(".end").html("<h1> Game Over </h1><p>Sua pontuação foi: " + points + "</p>" + "<div class='restart' onClick=reiniciaJogo()><h3 class='playAgain'>Jogar Novamente</h3></div>");
+            } // Fim da função gameOver();
+
+            //Reinicia o Jogo
 }
+
+        function reiniciaJogo() {
+            gameOverSound.pause();
+            $(".end").remove();
+            start();
+        
+        } //Fim da função reiniciaJogo
