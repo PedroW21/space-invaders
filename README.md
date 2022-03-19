@@ -4,3 +4,4 @@
  ## To-do
 
  - Implentar efeito ao ter colisão entre player e inimigo;
+ - Implementar uma animação no tiro;
