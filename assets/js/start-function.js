@@ -30,7 +30,7 @@ function start() { // Sintaxe do jQuery
 
     var endGame = false;
     var points= 0;
-    var actualLife = 50;
+    var actualLife =3;
 
     // Player pode atirar no começo do jogo
     var canShot = true;
