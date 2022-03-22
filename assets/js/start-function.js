@@ -195,7 +195,8 @@ function start() { // Sintaxe do jQuery
             
             positionPlayerAxisX= parseInt($(".player").css("left"));
 
-            shotAxisX = positionPlayerAxisX + 190;
+            // De onde o tiro vai sair
+            shotAxisX = positionPlayerAxisX + 290;
 
             topShot = toTop + 5;
 
@@ -203,14 +204,15 @@ function start() { // Sintaxe do jQuery
             $(".bullet").css("top",topShot);
             $(".bullet").css("left",shotAxisX);
             
-            var timeShot=window.setInterval(inFactShot, 30);
+            var timeShot=window.setInterval(inFactShot(), 1);
     } // Fecha a canShot
 
     function inFactShot(){
 
-        speedPlayerBullet = 35;
+        speedPlayerBullet = 15;
 
         positionPlayerAxisX = parseInt($(".bullet").css("left"));
+        
         $(".bullet").css("left",positionPlayerAxisX + speedPlayerBullet); //altere o numero aqui para definir a velocidade do tiro
 
         if(positionPlayerAxisX > 900){ // somente apos o tiro percorrer todo o caminho e for deletado que o jogador podera atirar novamente
@@ -266,7 +268,9 @@ function start() { // Sintaxe do jQuery
 
             speedPlayerBullet+= 1;
             
-            $(".bullet").remove();
+            $(".bullet").remove(); /// estou removendo a div
+            canShot = true; // se o tiro atingir algum inimigo ele pode atirar novamente, se não fizer isso não entra na função e não atira mais
+
             enemyAxisYBullet = parseInt($(numberOfTheEnemy).css("left"));
             enemyAxisXBullet = parseInt($(numberOfTheEnemy).css("top")); 
 
