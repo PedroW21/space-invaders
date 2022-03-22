@@ -183,50 +183,48 @@ function start() { // Sintaxe do jQuery
     
     // Função para atirar
 
-   function doShot() {
+    function doShot() {
        
-    if (canShot==true) {
-            
-            canShot=false;
-
-            shotSound.play();
-            
-            toTop = parseInt($(".player").css("top"));
-            
-            positionPlayerAxisX= parseInt($(".player").css("left"));
-
-            // De onde o tiro vai sair
-            shotAxisX = positionPlayerAxisX + 290;
-
-            topShot = toTop + 5;
-
-            $(".bg-game").append("<div class='bullet'></div");
-            $(".bullet").css("top",topShot);
-            $(".bullet").css("left",shotAxisX);
-            
-            var timeShot=window.setInterval(inFactShot(), 1);
-    } // Fecha a canShot
-
-    function inFactShot(){
-
-        speedPlayerBullet = 15;
-
-        positionPlayerAxisX = parseInt($(".bullet").css("left"));
+        if (canShot==true) {
+                
+                canShot=false;
+    
+                shotSound.play();
+                
+                toTop = parseInt($(".player").css("top"));
+                
+                positionPlayerAxisX= parseInt($(".player").css("left"));
+    
+                shotAxisX = positionPlayerAxisX + 190;
+    
+                topShot = toTop + 5;
+    
+                $(".bg-game").append("<div class='bullet'></div");
+                $(".bullet").css("top",topShot);
+                $(".bullet").css("left",shotAxisX);
+                
+                var timeShot=window.setInterval(inFactShot, 30);
+        } // Fecha a canShot
+    
+        function inFactShot(){
+    
+            speedPlayerBullet = 35;
+    
+            positionPlayerAxisX = parseInt($(".bullet").css("left"));
+            $(".bullet").css("left",positionPlayerAxisX + speedPlayerBullet); //altere o numero aqui para definir a velocidade do tiro
+    
+            if(positionPlayerAxisX > 900){ // somente apos o tiro percorrer todo o caminho e for deletado que o jogador podera atirar novamente
+                window.clearInterval(timeShot);
+                timeShot = null; // Para compatibilidade, alguns browsers exigem null
         
-        $(".bullet").css("left",positionPlayerAxisX + speedPlayerBullet); //altere o numero aqui para definir a velocidade do tiro
-
-        if(positionPlayerAxisX > 900){ // somente apos o tiro percorrer todo o caminho e for deletado que o jogador podera atirar novamente
-            window.clearInterval(timeShot);
-            timeShot = null; // Para compatibilidade, alguns browsers exigem null
+                $(".bullet").remove();
+                canShot = true;
     
-            $(".bullet").remove();
-            canShot = true;
-
-        }
-    } // Fecha a tiro de fato
-
+            }
+        } // Fecha a tiro de fato
     
-    } // Fecha a doShot
+        
+        } // Fecha a doShot
 
 
     // Função para detectar colisão de DIVs
@@ -266,17 +264,14 @@ function start() { // Sintaxe do jQuery
             speedEnemyType1 += 0.1;
             speedEnemyType2 += 0.1;
 
-            speedPlayerBullet+= 1;
+            speedPlayerBullet+= 0.01;
             
-            $(".bullet").remove(); /// estou removendo a div
-            canShot = true; // se o tiro atingir algum inimigo ele pode atirar novamente, se não fizer isso não entra na função e não atira mais
+            // $(".bullet").css("left", 1000);
+            $(".bullet").remove();
+            canShot = true;
 
-            enemyAxisYBullet = parseInt($(numberOfTheEnemy).css("left"));
-            enemyAxisXBullet = parseInt($(numberOfTheEnemy).css("top")); 
-
-            // Chama explosão para o tiro 
-            explosionWithEnemy(enemyAxisXBullet, enemyAxisYBullet);
-
+            enemyAxisY = parseInt($(numberOfTheEnemy).css("left"));
+            enemyAxisX = parseInt($(numberOfTheEnemy).css("top")); 
 
             newPositionEnemyAxisY = () => parseInt(Math.random() * 334);
 
