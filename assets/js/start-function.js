@@ -19,6 +19,7 @@ function start() { // Sintaxe do jQuery
     var shotSound = document.getElementById("shotSound");
     var backgroundSound=document.getElementById("backgroundSound");
     var gameOverSound=document.getElementById("gameOverSound");
+    var explosionSound = document.getElementById("explosionSound");
 
     //Música em loop
     backgroundSound.addEventListener("ended", function(){ backgroundSound.currentTime = 0; music.play(); }, false);
@@ -194,8 +195,9 @@ function start() { // Sintaxe do jQuery
                 toTop = parseInt($(".player").css("top"));
                 
                 positionPlayerAxisX= parseInt($(".player").css("left"));
-    
-                shotAxisX = positionPlayerAxisX + 190;
+
+                let bulletPositionOut = 25;
+                shotAxisX = positionPlayerAxisX + bulletPositionOut;
     
                 topShot = toTop + 5;
     
@@ -208,11 +210,12 @@ function start() { // Sintaxe do jQuery
     
         function inFactShot(){
     
-            speedPlayerBullet = 35;
+            speedPlayerBullet = 25; //altere o numero aqui para definir a velocidade do tiro
     
             positionPlayerAxisX = parseInt($(".bullet").css("left"));
-            $(".bullet").css("left",positionPlayerAxisX + speedPlayerBullet); //altere o numero aqui para definir a velocidade do tiro
-    
+
+            $(".bullet").css("left",positionPlayerAxisX + speedPlayerBullet); 
+
             if(positionPlayerAxisX > 900){ // somente apos o tiro percorrer todo o caminho e for deletado que o jogador podera atirar novamente
                 window.clearInterval(timeShot);
                 timeShot = null; // Para compatibilidade, alguns browsers exigem null
@@ -260,18 +263,17 @@ function start() { // Sintaxe do jQuery
 
         if(bulletCollision.length > 0) {
             
-            points = points + 1;
-            speedEnemyType1 += 0.1;
-            speedEnemyType2 += 0.1;
+            enemyAxisYBullet = parseInt($(numberOfTheEnemy).css("left"));
+            enemyAxisXBullet = parseInt($(numberOfTheEnemy).css("top")); 
 
-            speedPlayerBullet+= 0.01;
-            
-            // $(".bullet").css("left", 1000);
+            explosionWithEnemy(enemyAxisXBullet,enemyAxisYBullet);
+
             $(".bullet").remove();
             canShot = true;
 
-            enemyAxisY = parseInt($(numberOfTheEnemy).css("left"));
-            enemyAxisX = parseInt($(numberOfTheEnemy).css("top")); 
+            points = points + 1;
+            speedEnemyType1 += 0.1;
+            speedEnemyType2 += 0.1;
 
             newPositionEnemyAxisY = () => parseInt(Math.random() * 334);
 
@@ -286,6 +288,8 @@ function start() { // Sintaxe do jQuery
     // Função para execução da explosão com o jogador
     
     function explosionWithPlayer(enemyAxisX,enemyAxisY) {
+
+        explosionSound.play();
 
         $(".bg-game").append("<div class='explosion animation-explosion'></div");
         $(".explosion").css("background-image", "url(../assets/img/Explosion.png)");
@@ -312,6 +316,8 @@ function start() { // Sintaxe do jQuery
 
         // Começo da explosão tiro com inimigo
          function explosionWithEnemy(enemyAxisXBullet,enemyAxisYBullet) {
+           
+            explosionSound.play();
 
             $(".bg-game").append("<div class='explosion animation-explosion'></div");
             $(".explosion").css("background-image", "url(../assets/img/Explosion.png)");
