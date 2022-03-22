@@ -196,10 +196,11 @@ function start() { // Sintaxe do jQuery
                 
                 positionPlayerAxisX= parseInt($(".player").css("left"));
 
-                let bulletPositionOut = 25;
+                bulletPositionOut = 25;
+
                 shotAxisX = positionPlayerAxisX + bulletPositionOut;
     
-                topShot = toTop + 5;
+                topShot = toTop + 3;
     
                 $(".bg-game").append("<div class='bullet'></div");
                 $(".bullet").css("top",topShot);
@@ -211,7 +212,7 @@ function start() { // Sintaxe do jQuery
         function inFactShot(){
     
             speedPlayerBullet = 25; //altere o numero aqui para definir a velocidade do tiro
-    
+            
             positionPlayerAxisX = parseInt($(".bullet").css("left"));
 
             $(".bullet").css("left",positionPlayerAxisX + speedPlayerBullet); 
@@ -271,7 +272,7 @@ function start() { // Sintaxe do jQuery
             $(".bullet").remove();
             canShot = true;
 
-            points = points + 1;
+            points += 1;
             speedEnemyType1 += 0.1;
             speedEnemyType2 += 0.1;
 
