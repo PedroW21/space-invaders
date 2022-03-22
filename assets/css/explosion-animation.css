@@ -1,0 +1,36 @@
+.animation-explosion { /* Animação Explosão*/
+    animation: play4 .5s steps(12) infinite;
+
+    /* Compatibilidade */
+    -webkit-animation: play4 .5s steps(12) infinite; /*Chrome*/
+    -moz-animation: play4 .5s steps(12) infinite; /*Firefox*/
+    -ms-animation: play4 .5s steps(12) infinite; /*Internet Explorer*/
+    -o-animation: play4 .5s steps(12) infinite; /*Opera*/
+}
+
+@keyframes play4 {
+    from {background-position: 0px;}
+    to {background-position: -1152px;}
+}
+
+/* Compatibilidade */
+
+@-webkit-keyframes play4 {
+    from {background-position: 0px;}
+    to {background-position: -1152px;}
+}
+
+@-moz-keyframes play4 {
+    from {background-position: 0px;}
+    to {background-position: -1152px;}
+}
+
+@-ms-keyframes play4 {
+    from {background-position: 0px;}
+    to {background-position: -1152px;}
+}
+
+@-o-keyframes play4 {
+    from {background-position: 0px;}
+    to {background-position: -1152px;}
+}

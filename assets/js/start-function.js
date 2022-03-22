@@ -29,7 +29,7 @@ function start() { // Sintaxe do jQuery
 
     var endGame = false;
     var points= 0;
-    var actualLife = 3;
+    var actualLife = 50;
 
     // Player pode atirar no começo do jogo
     var canShot = true;
@@ -236,18 +236,18 @@ function start() { // Sintaxe do jQuery
 
         
 
-        // jogador com inimigos do tipo 1
+        // jogador com inimigos
 
         if(collision.length > 0) {
 
             actualLife--;
 
             // Capturando a localização exata do inimigo
-            enemyAxisY = parseInt($(numberOfTheEnemy).css("left"));
-            enemyAxisX = parseInt($(numberOfTheEnemy).css("top")); 
+            var enemyAxisX = parseInt($(numberOfTheEnemy).css("top")); 
+            var enemyAxisY = parseInt($(numberOfTheEnemy).css("left"));
             
             // Chama função para o Kabuuuuum!
-            //explosion(enemyAxisX, enemyAxisY);
+            explosionWithPlayer(enemyAxisX, enemyAxisY);
 
             // Realoca o inimigo após a colisao
             newPositionEnemyAxisY = () => parseInt(Math.random() * 334);
@@ -255,6 +255,8 @@ function start() { // Sintaxe do jQuery
             $(numberOfTheEnemy).css("left", 694);
             $(numberOfTheEnemy).css("top", newPositionEnemyAxisY());
         }
+
+        // Tiro com inimgo
 
         if(bulletCollision.length > 0) {
             
@@ -265,8 +267,8 @@ function start() { // Sintaxe do jQuery
             speedPlayerBullet+= 1;
             
             $(".bullet").css("left", 1000)
-            enemyAxisY = parseInt($(numberOfTheEnemy).css("left"));
-            enemyAxisX = parseInt($(numberOfTheEnemy).css("top")); 
+            enemyAxisYBullet = parseInt($(numberOfTheEnemy).css("left"));
+            enemyAxisXBullet = parseInt($(numberOfTheEnemy).css("top")); 
 
             newPositionEnemyAxisY = () => parseInt(Math.random() * 334);
 
@@ -279,19 +281,19 @@ function start() { // Sintaxe do jQuery
     // Fim da função para detectar colisão
 
     // Função para execução da explosão
-    /*
-    function explosion(enemyAxisX,enemyAxisY) {
+    
+    function explosionWithPlayer(enemyAxisX,enemyAxisY) {
 
-        $(".bg-game").append("<div class='explosion'></div");
-        $(".explosion").css("background-image", "url(../assets/img/Explosion2.png)");
+        $(".bg-game").append("<div class='explosion animation-explosion'></div");
+        $(".explosion").css("background-image", "url(../assets/img/Explosion.png)");
 
-        var div=$("explosion");
-        div.css("top", enemyAxisX);
+        var div=$(".explosion");
         div.css("left", enemyAxisY);
+        div.css("top", enemyAxisX);
 
-        div.animate({width:200, opacity:0}, "slow");
+        // div.animate({width:200, opacity:0}, "slow");
         
-        var timeExplosion= window.setInterval(removeExplosion, 1000);
+        var timeExplosion= window.setInterval(removeExplosion, 500); // tempo para remoção da explosão (tem que ser igual ao da animação)
         
             function removeExplosion() {
                 
@@ -299,9 +301,9 @@ function start() { // Sintaxe do jQuery
                 window.clearInterval(timeExplosion);
                 timeExplosion=null;
                 
-            }jogo
+            }
             
-        } */ // Irei implementar aṕos fazer alguns testes
+        }
          // Fim da função explosao1()
 
          function placar() {
@@ -313,7 +315,7 @@ function start() { // Sintaxe do jQuery
         // Função para atualizar a vida do player
 
         function lifeCounter(){
-            if(actualLife ==3){
+            if(actualLife >= 3){
                 $(".life").css("background-image", "url(../assets/img/energia3.png)");
             }
             else if(actualLife==2){
