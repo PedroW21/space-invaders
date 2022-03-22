@@ -266,9 +266,13 @@ function start() { // Sintaxe do jQuery
 
             speedPlayerBullet+= 1;
             
-            $(".bullet").css("left", 1000)
+            $(".bullet").remove();
             enemyAxisYBullet = parseInt($(numberOfTheEnemy).css("left"));
             enemyAxisXBullet = parseInt($(numberOfTheEnemy).css("top")); 
+
+            // Chama explosão para o tiro 
+            explosionWithEnemy(enemyAxisXBullet, enemyAxisYBullet);
+
 
             newPositionEnemyAxisY = () => parseInt(Math.random() * 334);
 
@@ -280,7 +284,7 @@ function start() { // Sintaxe do jQuery
     
     // Fim da função para detectar colisão
 
-    // Função para execução da explosão
+    // Função para execução da explosão com o jogador
     
     function explosionWithPlayer(enemyAxisX,enemyAxisY) {
 
@@ -304,7 +308,32 @@ function start() { // Sintaxe do jQuery
             }
             
         }
-         // Fim da função explosao1()
+         // Fim da função explosao com jogador
+
+
+        // Começo da explosão tiro com inimigo
+         function explosionWithEnemy(enemyAxisXBullet,enemyAxisYBullet) {
+
+            $(".bg-game").append("<div class='explosion animation-explosion'></div");
+            $(".explosion").css("background-image", "url(../assets/img/Explosion.png)");
+    
+            var div=$(".explosion");
+            div.css("left", enemyAxisYBullet);
+            div.css("top", enemyAxisXBullet);
+    
+            // div.animate({width:200, opacity:0}, "slow");
+            
+            var timeExplosion= window.setInterval(removeExplosion, 500); // tempo para remoção da explosão (tem que ser igual ao da animação)
+            
+                function removeExplosion() {
+                    
+                    div.remove();
+                    window.clearInterval(timeExplosion);
+                    timeExplosion=null;
+                    
+                }
+                
+            } // Fim da explosão de colisão tiro com inimigo
 
          function placar() {
 	
